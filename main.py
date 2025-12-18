@@ -20,18 +20,24 @@ limiter = Limiter(
     storage_uri="memory://",
 )
 
-conn = sqlite3.connect('gifts.db') 
-cursor = conn.cursor()  
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS gifts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        gift TEXT NOT NULL,
-        completed INTEGER DEFAULT 0
-    )
-''')
-conn.commit()  
-conn.close()
+def init_db():
+    """Initialize database on first access"""
+    conn = sqlite3.connect('gifts.db') 
+    cursor = conn.cursor()  
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS gifts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            gift TEXT NOT NULL,
+            completed INTEGER DEFAULT 0
+        )
+    ''')
+    conn.commit()  
+    conn.close()
+
+# Initialize DB when app starts
+with app.app_context():
+    init_db()
 
 @app.get("/")
 @limiter.exempt
