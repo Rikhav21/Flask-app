@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <script src="./main.js" defer></script>
+        <link rel="stylesheet" href="./styles.css">
+        <title>Rikhav's Gift Tracker!</title>
+    </head>
     <body>
         <div class="content">
             <h1>Rikhav's Gift Tracker!</h1>
-            <img src="\Flask-app\static\Cocoa-orpheus.png">
+            <img src="https://raw.githubusercontent.com/Rikhav21/Flask-app/74ff9231e60aa7b8dd431edee937e1be9c0de99b/static/Cocoa-orpheus.png">
             <p>Tracking gifts since the christmas of '25</p>
+            <form id="giftForm">
+                <label for="name">First name: </label>
+                <input id="name" type="text" name="name" required>
+                <br>
+                <label for="gift">Gift: </label>
+                <input id="gift" type="text" name="gift" required>
+                <br>
+                <label for="password">Password: </label>
+                <input id="password" type="password" name="password" required>
+                <br>
+                <input type="submit" value="Submit!">
+            </form>
+            <div id="gifts"></div>
         </div>
     </body>
 </html>
